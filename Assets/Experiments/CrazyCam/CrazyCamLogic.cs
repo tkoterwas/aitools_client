@@ -201,7 +201,9 @@ public class CrazyCamLogic : MonoBehaviour
         }
 
         RTUtil.FindObjectOrCreate("CrazyCamGUI").SetActive(true);
-        //RTUtil.FindObjectOrCreate("CamToolMiniPanel").SetActive(true);
+        RTUtil.SetActiveByNameIfExists("CamToolPanel", false);
+
+        RTUtil.FindObjectOrCreate("CamToolMiniPanel").SetActive(true);
         RTUtil.FindObjectOrCreate("CrazyCamMode").SetActive(true);
 
         CameraManager.Get().OnCameraStartedCallback += OnCameraStarted;
