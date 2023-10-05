@@ -73,7 +73,7 @@ public class GameLogic : MonoBehaviour
     bool m_inpaintMaskActive = false;
     int m_picsPerRow = 20;
     bool m_bTiling = false;
-    int m_genWidth = 512;
+    int m_genWidth = 1024;
     int m_genHeight = 512;
     bool m_bRemoveBackground = false;
 
