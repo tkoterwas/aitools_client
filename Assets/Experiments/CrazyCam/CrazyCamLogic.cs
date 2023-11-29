@@ -338,6 +338,7 @@ public class CrazyCamLogic : MonoBehaviour
         
         var processedVScale = m_processedRenderer.gameObject.transform.parent.localScale;
         float processedAspectX = (float)GameLogic.Get().GetGenWidth() / (float)GameLogic.Get().GetGenHeight();
+        Debug.Log(processedVScale);
         processedVScale.x = processedAspectX;
 
         m_processedRenderer.gameObject.transform.parent.localScale = processedVScale;
@@ -410,18 +411,22 @@ public class CrazyCamLogic : MonoBehaviour
         float targetAspectRatio = (float)GameLogic.Get().GetGenWidth() / (float)GameLogic.Get().GetGenHeight();
 
         Rect rect;
-        if (aspectRatio > 1)
-        {
-            float newWidth = webCamTex.height * aspectRatio;
-            float excessWidth = (newWidth - webCamTex.height) / 2;
-            rect = new Rect(excessWidth, 0, webCamTex.height, webCamTex.height);
+        float rectX = 0f;
+        float rectY = 0f;
+        float newWidth = webCamTex.width;
+        float newHeight = webCamTex.height;
+        float orientation = (aspectRatio >= 1)? 1f : -1f;
+       
+        if (orientation * (targetAspectRatio - aspectRatio) > 0) {
+            newHeight = webCamTex.width / targetAspectRatio;
+            rectY = (webCamTex.height - newHeight) / 2;
         }
-        else
-        {
-            float newHeight = webCamTex.width / aspectRatio;
-            float excessHeight = (newHeight - webCamTex.width) / 2;
-            rect = new Rect(0, excessHeight, webCamTex.width, webCamTex.width);
+        else {
+            newWidth = webCamTex.height * targetAspectRatio;
+            rectX = (webCamTex.width - newWidth) / 2;
         }
+        rect = new Rect(rectX, rectY, newWidth, newHeight);
+
 
         //Debug.Log("Tex of "+webCamTex.width+","+webCamTex.height+" squared to Rect: " + rect);
         //Save the image to the Texture2D
