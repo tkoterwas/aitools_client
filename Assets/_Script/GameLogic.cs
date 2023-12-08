@@ -1009,7 +1009,7 @@ public class GameLogic : MonoBehaviour
         //isn't initted yet
         //RTMessageManager.Get().Schedule(0, PizzaLogic.Get().OnStartPizza);
         //RTMessageManager.Get().Schedule(0, BreakoutLogic.Get().OnStartBreakout);
-        // RTMessageManager.Get().Schedule(0, ShootingGalleryLogic.Get().OnStartGameMode);
+        RTMessageManager.Get().Schedule(0, CrazyCamLogic.Get().OnStartGameMode);
 #endif
 
         Config.Get().CheckForUpdate();
