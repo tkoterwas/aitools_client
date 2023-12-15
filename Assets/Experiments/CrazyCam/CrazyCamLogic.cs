@@ -189,7 +189,7 @@ public class CrazyCamLogic : MonoBehaviour
 
         m_timer = 0;
 
-        GameLogic.Get().SetToolsVisible(false);
+        //GameLogic.Get().SetToolsVisible(false);
         ImageGenerator.Get().SetGenerate(false);
         GameLogic.Get().OnClearButton();
         
@@ -342,6 +342,13 @@ public class CrazyCamLogic : MonoBehaviour
         processedVScale.x = processedAspectX;
 
         m_processedRenderer.gameObject.transform.parent.localScale = processedVScale;
+        if (Display.displays.Length > 1) {
+            var processedPosition = m_processedRenderer.gameObject.transform.parent.parent.position;
+            processedPosition.x = 21;
+            m_processedRenderer.gameObject.transform.parent.parent.position = processedPosition;
+
+        }
+        Debug.Log(Display.displays.Length);
     }
 
     public void OnEndGameMode()
